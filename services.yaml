@@ -1,0 +1,264 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+# icons found here https://github.com/walkxcode/dashboard-icons
+
+- Hypervisor:
+    - TrueNAS:
+        icon: truenas.svg
+        href: ""
+        description: Home Server
+        widget:
+            type: glances
+            url: http://192.168. .
+            metric: info
+    - CPU:
+        widget:
+            type: glances
+            url: http://192.168. .
+            metric: cpu
+    - Memory:
+        widget:
+            type: glances
+            url: http://192.168. .
+            metric: memory
+    - Process:
+        widget:
+            type: glances
+            url: http://192.168. .
+            metric: process
+    - Home Assistant Glances:
+        icon: home-assistant.png
+        href: https://
+        description: Home Assistant Server
+        widget:
+          type: glances
+          url: http://192.168. .
+          username: # optional if auth enabled in Glances
+          password: # optional if auth enabled in Glances
+          metric: info
+    - HA Glances:
+        icon: home-assistant.png
+        href: https://
+        description: Home Assistant Server
+        widget:
+          type: glances
+          url: http://192.168. .
+          username: # optional if auth enabled in Glances
+          password: # optional if auth enabled in Glances
+          metric: cpu
+    - Home Assistant:
+        icon: home-assistant.png
+        href: https://
+        description: Home Assistant Server
+        widget:
+            type: homeassistant
+            url: http://192.168. .
+            key: 
+            custom:
+              - template: "{{ relative_time(as_datetime(states('sensor.last_boot'))) }}"
+                label: Last Boot
+              - state: sensor.home_assistant_operating_system_version
+                label: OS Version
+    - HA System Stats:
+        icon: home-assistant.png
+        description: Home Assistant Serve
+        widget:
+            type: homeassistant
+            url: http://192.168. .
+            key: 
+            custom:
+             - state: sensor.memory_use_percent
+               label: Memory Use
+             - state: sensor.localhost_cpu_used
+               label: CPU Used
+             - state: sensor.processor_temperature
+               label: CPU Temp
+- Smart Home:                                                                                                                                                                                           
+    - Home Assistant:                                             
+        icon: home-assistant.svg                                                                                                                                                                        
+        href: https://                         
+        description: home                                            
+        siteMonitor: https://                                                                                                                                                           
+        widget:                                                                                                                                                                                         
+            type: homeassistant                                   
+            url: http://192.168. 
+            key: 
+    - Baby Buddy:                                                                                                                                                                                       
+        icon: home-assistant.svg                                  
+        href: https://                                                                                                                                                                  
+        description: baby room                                                                                                                                                                          
+        widget:                                                        
+            type: homeassistant                                                                                                                                                                         
+            url: http://192.168. .
+            key: 
+            custom:                                                                                                                                                                                     
+            - template: "{{ states.counter.bb_diaper_counter.state }}"
+              label: Diaper Changes Today                                                                                                                                                               
+            - template: "{{ states.counter.bb_feeding_counter.state }}"
+              label: Feeds Today                                                                                                                                                                        
+    - Am I on Audio or Video:                                                                                                                                                                           
+        icon: home-assistant.svg                                     
+        href: https://
+        description: office                                                                                                                                                                             
+        widget:                                                             
+            type: homeassistant                                                         
+            url: http://192.168. .
+            key: 
+            custom:                                               
+            - template: "{{ states('binary_sensor.mark_ii_microphoneactive') }}"                                                                                                                        
+              label: Mic Status                                                                                                                                                                         
+            - template: "{{ states('binary_sensor.mark_ii_webcamactive') }}"
+              label: Camera Status                                                                                                                                                                      
+    - Apartment Temperature:                                                                                                                                                                            
+        icon: home-assistant.svg                                                                                                                                                                        
+        href: https://
+        description: home                                             
+        widget:                                                                                                                                                                                         
+            type: homeassistant                                        
+            url: http://192.168. .                                                                                                                                                       
+            key: 
+            custom:                                                  
+            - template: "{{ states('sensor.bedroom_temperature', with_unit=True) }}"                                                                                                                    
+              label: Bedroom                                                                                                                                                                            
+            - template: "{{ states('sensor.living_room_temperature', with_unit=True) }}"
+              label: Living Room                                                        
+- Network:                                                                                                                                                                                              
+    - Unifi:                                                                                                                                                                                            
+        icon: unifi.png                                                             
+        href: https://192.168. .
+        description: Unifi Host OS                                                                                                                                                                      
+        widget:                                                             
+          type: unifi                                                                                                                                                                                   
+          url: https://192.168. .
+          username: ""                                                                                                                                                                          
+          password: ""                                                                                                                                                                          
+    - Speedtest:                                                      
+         icon: speedtest-tracker.png                                                    
+         description: speedtest                                        
+         widget:                                                                                                                                                                                        
+            type: speedtest                                                                                                                                                                             
+            url: http://192.168. .
+    - Firewall:                                                                                                                                                                                         
+        icon: firewalla.png              
+        href: https://my.firewalla.com/#/devices                                        
+        description: network firewall     
+- Web Services:                                                                                                                                                                                         
+    - Uptime Kuma:                                                                                                                                                                                      
+        icon: uptime-kuma.svg                                        
+        href: https://
+        description: internal                                                                                                                                                                           
+        siteMonitor: https://
+        widget:                                                                         
+            type: uptimekuma                                                                                                                                                                            
+            url: http://192.168. .
+            username: ""                                                       
+            password: ""                                                                                                                                                             
+            slug: home                                                                                                                                                                                  
+    - Nginx Proxy Manager:                                                  
+         icon: nginx-proxy-manager.png                                                                                                                                                                  
+         description: proxy hosts                                                                                                                                                                       
+         widget:                                                                                                                                                                                        
+           type: npm                                                                                                                                                                                    
+           url: http://192.168. .
+           username: ""                                                                                                                                                                
+           password: ""                             
+- Storage:                                                                                                                                                                                              
+    - NextCloud:                                                                                                                                                                                        
+        icon: nextcloud.svg                                          
+        href:                                                                                                                                                                                           
+        description: Manan's Cloud                                                                                                                                                                      
+        siteMonitor: https://                                    
+        widget:                                                                         
+          type: nextcloud                                                                                                                                                                               
+          url: https://
+          username: ""                                                         
+          password: ""                                                                                                                                                     
+    - TrueNAS:                                                                                                                                                                                          
+        icon: truenas.svg                                                   
+        href: "{{HOMEPAGE_VAR_TRUENAS_URL}}"                                                                                                                                                            
+        description: scale                                                                                                                                                                              
+        widget:                                                                                                                                                                                         
+            type: truenas                                                                                                                                                                               
+            url: https://192.168. .
+            key: 
+            enablePools: true                                          
+    - WD NAS Console:                                                                                                                                                                                   
+        icon: https://www.westerndigital.com/content/dam/store/en-us/assets/home-page/brand-logos/wd-logo.png.wdthumb.500.500.webp                                                                      
+        href: http://                         
+        description: WD NAS EX2 Ultra                                                                                                                                                                   
+        siteMonitor: http://192.168.
+- Media:                                                                                
+    - Upcoming Movies:                                                                  
+        icon: mediathekview.png                                                                                                                                                                         
+        description: Upcoming Movies                                                                                                                                                                                                                         
+        widget:                                                                     
+           type: calendar                                                                                                                                                                               
+           firstDayInWeek: monday # optional - defaults to monday                                                                                                                                       
+           view: agenda # optional - possible values monthly, agenda             
+           maxEvents: 5 # optional - defaults to 10                                                                                                                                                     
+           showTime: true # optional - show time for event happening today - defaults to false                                                                                                          
+           timezone: America/Los_Angeles # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this
+           integrations: # optional                                                                                                                                                                     
+             - type: ical # Show calendar events from another service 
+               url: https://calendar.google.com/calendar/ical/pfutdblf1gi8jmfsvroh76f6jg%40group.calendar.google.com/public/basic.ics # URL with calendar events
+               name: Upcoming Movies  # required - name for these calendar events
+               color: orange # optional - defaults to pre-defined color for the service (zinc for ical)                                                                                                 
+               params: # optional - additional params for the service                                                                                                                                   
+               showName: true # optional - show name before event title in event line - defaults to false                                                                                                                                                    
+    - Plex:                                                                                                                                                                                             
+        icon: plex.svg                                               
+        href: https://
+        description: media server                                                
+        siteMonitor: https://
+        widget:                                                                                                                                                                                                                                              
+            type: plex                                                                                   
+            url: https://
+            key: 
+    - Home Media Players:                                                                                                                                                                                                                                    
+        icon: home-assistant.svg                                                                         
+        href: https://
+        description: TV Status                                                                                                                                                                          
+        widget:                                                                  
+            type: homeassistant                                                                                                                                                                         
+            url: http://192.168.                                                                                                                                                       
+            key:  
+            custom:                                                                                                                                                                                     
+            - template: "{{ states('media_player.living_room_apple_tv') }}"
+              label: Living Room                                                                                                                                                                        
+            - template: "{{ states('media_player.guest_room_2') }}"                                                                                                                                     
+              label: Guest Room                                                                                                                                                                         
+            - template: "{{ states('media_player.bedroom') }}"                                                                                                                                          
+              label: Bedroom                                                                                                                                                                                                                                 
+    - PhotoPrism:                                                                                                                                                                                       
+         icon: photoprism.svg                                                                                                                                                                           
+         href: https://
+         description: Photos via Photoprism                                                                                                                                                             
+         siteMonitor: https://
+         widget:                                                                                                                                                                                                                                             
+           type: photoprism                                                                              
+           url: https://
+           username:                                                                                                                                                                               
+           password: 
+                                                                                                                                                                                                        
+- Other:                                                                                                                                                                                                
+    - Bitwarden:                                                                                                                                                                                                                                             
+        icon: bitwarden.png                                                                                                                                                                             
+        href: https://
+        description:                                                                                                                       
+        siteMonitor: https://
+    - Saved Links:                                                                                                                                                                                      
+        icon: linkwarden.png                                                                                                                                                                            
+        href: https://
+        description: Linkwarden                                                                                                                                                                         
+        siteMonitor: https://
+    - Personal Blog:                                                                                                                                            
+        icon: https://
+        href: https://
+        description: Wordpress Console                                                                                                                                                                                                                       
+        siteMonitor: https://
+    - Gaming Blog:                                                              
+        icon: https://
+        href: https://
+        description: Wordpress Console                                                                                                                                                                  
+        siteMonitor: https://
